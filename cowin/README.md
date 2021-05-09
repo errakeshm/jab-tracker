@@ -5,9 +5,10 @@
     - Batch Job (Under Development) : A job that would keep track of slot availability
 
 
+
 ## **API Description**
 
-**Base URL :** http://localhost:8080/api/cowin
+- Below portion describes all the rest api exposed by the application
 
 ## **Methods**
 
