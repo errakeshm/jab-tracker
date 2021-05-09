@@ -12,7 +12,7 @@
 
 ## **Methods**
 
-### ALL
+**ALL**
 
 Example : http://localhost:8080/api/cowin/all?district_id=446&date=16-05-2021
 
@@ -20,9 +20,10 @@ Description : Provides you with all center related information
 
 **AVAILABLE**
 
-Example : http://localhost:8080/api/cowin/available?district_id=446&date=16-05-2021
+Example
+- http://localhost:8080/api/cowin/available?district_id=446&date=16-05-2021
 
-Request Parametes(Optional) :
+Request Parameters(Optional) :
 
 - fee_type : free/paid
 - age_limit : 18/45
@@ -30,8 +31,6 @@ Request Parametes(Optional) :
 
 Examples including optional request parameters:
 
-http://localhost:8080/api/cowin/available?district\_id=446&date=16-05-2021&fee\_type=free
-
-http://localhost:8080/api/cowin/available?district\_id=446&date=16-05-2021&fee\_type=free&age_limit=18
-
-http://localhost:8080/api/cowin/available?district\_id=446&date=16-05-2021&fee\_type=free&age_limit=45&type=COVAXIN
+- http://localhost:8080/api/cowin/available?district\_id=446&date=16-05-2021&fee\_type=free
+- http://localhost:8080/api/cowin/available?district\_id=446&date=16-05-2021&fee\_type=free&age_limit=18
+- http://localhost:8080/api/cowin/available?district\_id=446&date=16-05-2021&fee\_type=free&age_limit=45&type=COVAXIN
