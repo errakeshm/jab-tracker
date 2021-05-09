@@ -2,8 +2,8 @@
 
 - This is a POC Spring based application that provides the following:
     - API : An API that consumes the COWIN Open API and provides you with various filter option
-    - Batch Job : Batch Application that would keep track of slot availability
-    - Messaging Based solution (In Progress) : Alert the user on that mobile device
+    - Batch Job : Batch Application that would keep track of slot availability. Also alerts the user with an alarm sound incase of availability.
+    - Messaging Based solution (In Progress)
 
 * * *
 
