@@ -37,7 +37,7 @@ public class SoundUtil implements LineListener{
 	}
 
 	public void play()  {
-		AudioInputStream stream;
+		AudioInputStream stream = null;
 		try {
 			if(!isPlaying.get()) {
 				stream = AudioSystem.getAudioInputStream(ResourceUtils.getFile(WARN_AUDIO_PATH));
@@ -59,6 +59,13 @@ public class SoundUtil implements LineListener{
 			e1.printStackTrace();
 		} catch (LineUnavailableException e1) {
 			e1.printStackTrace();
+		} finally {
+			if(stream != null)
+				try {
+					stream.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 		}
 		
 	}

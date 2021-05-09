@@ -35,6 +35,10 @@ public class DataRetrievalThreadPool {
 		return centerWrapper.get();
 	}
 	
+	public void submitTask(AudioTask task) {
+		executor.submit(task);
+	}
+	
 	public boolean isJobRunning() {
 		return isActive.get();
 	}

@@ -11,6 +11,7 @@ import com.tracker.cowin.batch.dataobjects.CenterWrapper;
 import com.tracker.cowin.batch.dataobjects.JobConfiguration;
 import com.tracker.cowin.batch.parser.JobElement;
 import com.tracker.cowin.batch.service.SlotService;
+import com.tracker.cowin.batch.threadpools.AudioTask;
 import com.tracker.cowin.batch.threadpools.DataRetrievalTask;
 import com.tracker.cowin.batch.threadpools.DataRetrievalThreadPool;
 import com.tracker.cowin.util.SoundUtil;
@@ -25,10 +26,10 @@ public class JabTrackerLauncher {
 	private SlotService slotService;
 	@Autowired
 	private SoundUtil soundUtil;
-	
+
 	@Value("${alarm.enabled}")
 	private boolean isAlarmEnabled;
-	
+
 	public CenterWrapper submit(String name) throws InterruptedException, ExecutionException {
 		if(!this.dataRetrievalThreadPool.isJobRunning()) {
 			JobConfiguration configuration = (JobConfiguration) this.context.getBean(name);
@@ -37,9 +38,11 @@ public class JabTrackerLauncher {
 		}
 		return null;
 	}
-	
+
 	public void play() {
-		if(isAlarmEnabled)
-			this.soundUtil.play();
+		if(isAlarmEnabled) {
+			//this.soundUtil.play();
+			this.dataRetrievalThreadPool.submitTask(new AudioTask(this.soundUtil));
+		}
 	}
 }
