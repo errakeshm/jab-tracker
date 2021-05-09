@@ -13,4 +13,9 @@ public class CenterWrapper {
 	public void setCenters(List<Center> centers) {
 		this.centers = centers;
 	}
+	@Override
+	public String toString() {
+		return "CenterWrapper [centers=" + centers + "]";
+	}
+	
 }

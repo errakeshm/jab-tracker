@@ -82,4 +82,11 @@ public class Center {
 	public void setSessions(List<Session> sessions) {
 		this.sessions = sessions;
 	}
+	@Override
+	public String toString() {
+		return "Center [centerId=" + centerId + ", name=" + name + ", address=" + address + ", stateName=" + stateName
+				+ ", districtName=" + districtName + ", pinCode=" + pinCode + ", from=" + from + ", to=" + to
+				+ ", feeType=" + feeType + ", sessions=" + sessions + "]";
+	}
+	
 }

@@ -51,4 +51,10 @@ public class Session {
 	public int getAvailableCapacity() {
 		return availableCapacity;
 	}
+	@Override
+	public String toString() {
+		return "Session [sessionId=" + sessionId + ", date=" + date + ", ageLimit=" + ageLimit + ", availableCapacity="
+				+ availableCapacity + ", vaccine=" + vaccine + ", slots=" + slots + "]";
+	}
+	
 }

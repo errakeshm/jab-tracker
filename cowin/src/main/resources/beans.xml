@@ -8,4 +8,32 @@
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd">
 	
 	<context:property-placeholder location="classpath:configurations.properties"/>
+	
+	
+	<!--  Define the jobs like this -->
+	<bean name="available18Free09" class="com.tracker.cowin.batch.dataobjects.JobConfiguration">
+        <property name="name" value="available18Free09"></property>
+        <property name="api" value="${calendarByDistricts}"></property>
+        <property name="params" ref="available18Free09-params"></property>
+    </bean>
+    
+    <util:map id="available18Free09-params" key-type="java.lang.String" value-type="java.lang.String">
+		<entry key="district_id" value="446"></entry>
+		<entry key="date" value="09-05-2021"></entry>
+		<entry key="fee_type" value="free"></entry>
+		<entry key="age_limit" value="45"></entry>
+	</util:map>
+	
+	<bean name="available18Free16" class="com.tracker.cowin.batch.dataobjects.JobConfiguration">
+        <property name="name" value="available18Free16"></property>
+        <property name="api" value="${calendarByDistricts}"></property>
+        <property name="params" ref="available18Free16-params"></property>
+    </bean>
+    
+    <util:map id="available18Free16-params" key-type="java.lang.String" value-type="java.lang.String">
+		<entry key="district_id" value="446"></entry>
+		<entry key="date" value="16-05-2021"></entry>
+		<entry key="fee_type" value="free"></entry>
+		<entry key="age_limit" value="45"></entry>
+	</util:map>
 </beans>
