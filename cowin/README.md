@@ -48,7 +48,7 @@ Examples including optional request parameters:
 
 - If slots are available based on the configured job the data is printed in the system console as mentioned below :
 
-![Output](https://github.com/errakeshm/jab-tracker/blob/main/cowin/Example.PNG)
+![Example](https://github.com/errakeshm/jab-tracker/blob/main/cowin/src/main/resources/static/Example.PNG)
 
 ### Configuration
 
