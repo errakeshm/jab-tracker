@@ -41,6 +41,8 @@ public class ApplicationTask implements Runnable{
 						at.addRow(null,"Sessions");
 						for(Session session:center.getSessions()) {
 							at.addRule();
+							at.addRow("Date",session.getDate());
+							at.addRule();
 							at.addRow("Availability",session.getAvailableCapacity());
 							at.addRule();
 							at.addRow("Vaccine", session.getVaccine());
