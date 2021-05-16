@@ -28,14 +28,15 @@ Request Parametes(Optional) :
 - fee_type : free/paid
 - age_limit : 18/45
 - type : covaxin/covishield
+- dose : 1/2 (dose 1/dose 2)
 
 Examples including optional request parameters:
 
 - [http://localhost:8080/api/cowin/available?district\_id=446&date=16-05-2021&fee\_type=free](http://localhost:8080/api/cowin/available?district_id=446&date=16-05-2021&fee_type=free)
 - [http://localhost:8080/api/cowin/available?district\_id=446&date=16-05-2021&fee\_type=free&age_limit=18](http://localhost:8080/api/cowin/available?district_id=446&date=16-05-2021&fee_type=free&age_limit=18)
 - [http://localhost:8080/api/cowin/available?district\_id=446&date=16-05-2021&fee\_type=free&age_limit=45&type=COVAXIN](http://localhost:8080/api/cowin/available?district_id=446&date=16-05-2021&fee_type=free&age_limit=45&type=COVAXIN)
+- [http://localhost:8080/api/cowin/available?district\_id=446&date=16-05-2021&fee\_type=free&age_limit=45&dose=1](http://localhost:8080/api/cowin/available?district_id=446&date=16-05-2021&fee_type=free&age_limit=45&dose=1)
 
-* * *
 
 ## **Batch Job**
 
