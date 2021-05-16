@@ -7,5 +7,7 @@ public class RequestConstants {
 	public static final String FEE_TYPE = "fee_type";
 	public static final String AGE_LIMIT = "age_limit";
 	public static final String TYPE = "type";
+	public static final String DOSE = "dose";
+	public static final String BENEFICIARY_REFERENCE_ID="beneficiary_reference_id";
 
 }

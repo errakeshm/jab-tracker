@@ -16,8 +16,14 @@ public class SlotFilterPredicates {
 		return (sess)->((ageLimit != null) ? sess.getAgeLimit() == ageLimit : true);
 	}
 	
-	public static Predicate<Session> findSessionByAvailableCapacity() {
-		return (sess)->sess.getAvailableCapacity() != 0;
+	public static Predicate<Session> findSessionByAvailableCapacity(Integer dose) {
+		
+		if(dose != null) {
+			return (sess)->(sess.getAvailableCapacity() > 0
+					&& ((dose == 1 && sess.getAvailableCapacityDose1() > 0)|| (dose ==2 && sess.getAvailableCapacityDose2() > 0) || (dose == 12 && (sess.getAvailableCapacityDose1() > 0 || sess.getAvailableCapacityDose2() > 0))));  
+		} else {
+			return (sess)->(sess.getAvailableCapacity() > 0);
+		}
 	}
 	
 	public static Predicate<Session> findSessionByVaccineType(VaccineType type) {

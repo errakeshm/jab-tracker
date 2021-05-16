@@ -53,6 +53,12 @@ public class ApplicationTask implements Runnable{
 						System.out.println(at.render(50));
 					}
 					this.jabTrackerLauncher.play();
+				} else {
+					AsciiTable at = new AsciiTable();
+					at.addRule();
+					at.addRow(null,"No SLOTS found !!");
+					at.addRule();
+					System.out.println(at.render(50));
 				}
 			}
 		} catch (InterruptedException | ExecutionException e) {

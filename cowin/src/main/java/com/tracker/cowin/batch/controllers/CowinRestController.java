@@ -25,8 +25,8 @@ public class CowinRestController {
 	}
 	
 	@GetMapping(value ="/available")
-	public ResponseEntity<List<Center>> getAvailableSlots(@RequestParam(name="district_id") Integer id, @RequestParam String date, @RequestParam(required=false, name="fee_type") String feeType, @RequestParam(required=false, name="age_limit") Integer ageLimit, @RequestParam(required=false, name="type") String vaccineType){
-		List<Center> centers = this.slotHandler.getAvailableSlots(id, date, feeType, ageLimit, vaccineType);
+	public ResponseEntity<List<Center>> getAvailableSlots(@RequestParam(name="district_id") Integer id, @RequestParam String date, @RequestParam(required=false, name="fee_type") String feeType, @RequestParam(required=false, name="age_limit") Integer ageLimit, @RequestParam(required=false, name="type") String vaccineType, @RequestParam(required=false, name="dose") Integer dose){
+		List<Center> centers = this.slotHandler.getAvailableSlots(id, date, feeType, ageLimit, vaccineType, dose);
 		return new ResponseEntity<>(centers, HttpStatus.OK);
 	}
 }

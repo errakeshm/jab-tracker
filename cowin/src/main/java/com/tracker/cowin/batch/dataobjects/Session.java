@@ -13,8 +13,24 @@ public class Session {
 	private int ageLimit;
 	@JsonProperty("available_capacity")
 	private int availableCapacity;
+	@JsonProperty("available_capacity_dose1")
+	private int availableCapacityDose1;
+	@JsonProperty("available_capacity_dose2")
+	private int availableCapacityDose2;
 	private String vaccine;
 	private List<String> slots;
+	public int getAvailableCapacityDose1() {
+		return availableCapacityDose1;
+	}
+	public void setAvailableCapacityDose1(int availableCapacityDose1) {
+		this.availableCapacityDose1 = availableCapacityDose1;
+	}
+	public int getAvailableCapacityDose2() {
+		return availableCapacityDose2;
+	}
+	public void setAvailableCapacityDose2(int availableCapacityDose2) {
+		this.availableCapacityDose2 = availableCapacityDose2;
+	}
 	public String getSessionId() {
 		return sessionId;
 	}

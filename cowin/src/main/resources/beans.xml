@@ -9,31 +9,32 @@
 	
 	<context:property-placeholder location="classpath:configurations.properties"/>
 	
-	
 	<!--  Define the jobs like this -->
-	<bean name="available18Free09" class="com.tracker.cowin.batch.dataobjects.JobConfiguration">
-        <property name="name" value="available18Free09"></property>
+	<bean name="available18Free17" class="com.tracker.cowin.batch.dataobjects.JobConfiguration">
+        <property name="name" value="available18Free17"></property>
         <property name="api" value="${calendarByDistricts}"></property>
-        <property name="params" ref="available18Free09-params"></property>
+        <property name="params" ref="available18Free17-params"></property>
     </bean>
     
-    <util:map id="available18Free09-params" key-type="java.lang.String" value-type="java.lang.String">
+    <util:map id="available18Free17-params" key-type="java.lang.String" value-type="java.lang.String">
 		<entry key="district_id" value="446"></entry>
-		<entry key="date" value="09-05-2021"></entry>
+		<entry key="date" value="17-05-2021"></entry>
 		<entry key="fee_type" value="free"></entry>
-		<entry key="age_limit" value="45"></entry>
+		<entry key="age_limit" value="18"></entry>
+		<entry key="dose" value="1"></entry>
 	</util:map>
 	
-	<bean name="available18Free16" class="com.tracker.cowin.batch.dataobjects.JobConfiguration">
-        <property name="name" value="available18Free16"></property>
+	<bean name="available18Free24" class="com.tracker.cowin.batch.dataobjects.JobConfiguration">
+        <property name="name" value="available18Free24"></property>
         <property name="api" value="${calendarByDistricts}"></property>
-        <property name="params" ref="available18Free16-params"></property>
+        <property name="params" ref="available18Free24-params"></property>
     </bean>
     
-    <util:map id="available18Free16-params" key-type="java.lang.String" value-type="java.lang.String">
+    <util:map id="available18Free24-params" key-type="java.lang.String" value-type="java.lang.String">
 		<entry key="district_id" value="446"></entry>
-		<entry key="date" value="16-05-2021"></entry>
+		<entry key="date" value="24-05-2021"></entry>
 		<entry key="fee_type" value="free"></entry>
-		<entry key="age_limit" value="45"></entry>
+		<entry key="age_limit" value="18"></entry>
+		<entry key="dose" value="1"></entry>
 	</util:map>
 </beans>

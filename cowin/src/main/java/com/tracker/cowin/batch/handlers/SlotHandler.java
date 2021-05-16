@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;
-import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 
 import com.tracker.cowin.batch.configurations.EnvironmentProperties;
@@ -34,7 +33,7 @@ public class SlotHandler {
 		return wrapper.getCenters();
 	}
 	
-	public List<Center> getAvailableSlots(Integer id, String date, String feeType, Integer ageLimit, String vaccineType) {
+	public List<Center> getAvailableSlots(Integer id, String date, String feeType, Integer ageLimit, String vaccineType, Integer dose) {
 		JobConfiguration configuration = new JobConfiguration();
 		configuration.setApi(this.environment.getEnvironment().getProperty(PropertyConstants.CALENDAR_BY_DISTRICTS));
 		configuration.addParam(RequestConstants.DISTRICT_ID, id.toString());
@@ -42,6 +41,7 @@ public class SlotHandler {
 		configuration.addParam(RequestConstants.FEE_TYPE, feeType);
 		configuration.addParam(RequestConstants.AGE_LIMIT, StringHelper.convertIntegerToString(ageLimit));
 		configuration.addParam(RequestConstants.TYPE, vaccineType);
+		configuration.addParam(RequestConstants.DOSE, StringHelper.convertIntegerToString(dose));
 		return this.slotService.getAvailableSlots(configuration);
 	}
 }

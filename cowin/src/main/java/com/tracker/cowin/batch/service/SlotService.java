@@ -7,7 +7,6 @@ import java.util.Map.Entry;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -18,7 +17,10 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import com.tracker.cowin.batch.constants.RequestConstants;
+import com.tracker.cowin.batch.configurations.EnvironmentProperties;
 import com.tracker.cowin.batch.constants.ApplicationConstants.VaccineType;
+import com.tracker.cowin.batch.constants.CommonConstants;
+import com.tracker.cowin.batch.constants.PropertyConstants;
 import com.tracker.cowin.batch.dataobjects.Center;
 import com.tracker.cowin.batch.dataobjects.CenterWrapper;
 import com.tracker.cowin.batch.dataobjects.JobConfiguration;
@@ -28,8 +30,9 @@ import com.tracker.cowin.helpers.StringHelper;
 
 @Service
 public class SlotService {
-	@Value("${appointments.calendarByDistrict.protected}")
-	private String urlAppointmentCalendarByDistrict;
+	
+	@Autowired
+	private EnvironmentProperties environment;
 	
 	@Autowired
 	private RestTemplate restTemplate;
@@ -38,6 +41,7 @@ public class SlotService {
 		
 		HttpHeaders headers = new HttpHeaders();
 		headers.set(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON_VALUE);
+		headers.set(HttpHeaders.HOST, "cdn-api.co-vin.in");
 		UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(configuration.getApi());
 		for(Entry<String,String> entry : configuration.getParams().entrySet()) {
 			builder.queryParam(entry.getKey(),entry.getValue());
@@ -51,10 +55,10 @@ public class SlotService {
 					entity,
 					CenterWrapper.class);
 		} catch(HttpClientErrorException ex) {
-			ex.printStackTrace();
+			CommonConstants.LOGGER.error(ex.getMessage());
 		}
 		
-		return (response != null ) ? response.getBody() : null;
+		return (response != null) ? response.getBody() : null;
 	}
 	
 	public CenterWrapper getAllSlots(Integer id, String date){
@@ -62,7 +66,8 @@ public class SlotService {
 		HttpHeaders headers = new HttpHeaders();
 		headers.set(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON_VALUE);
 		
-		UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(urlAppointmentCalendarByDistrict);
+		UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(
+				this.environment.getEnvironment().getProperty(PropertyConstants.APPOINTMENTS_CALENDARBYDISTRICT));
 		builder.queryParam(RequestConstants.DISTRICT_ID, id);
 		builder.queryParam(RequestConstants.DATE, date);
 		
@@ -89,7 +94,8 @@ public class SlotService {
 				Center resultCenter = center;
 				if(StringHelper.ifNullOrMatch(center.getFeeType(), params.get(RequestConstants.FEE_TYPE))) {
 					VaccineType vaccine = getVaccineType(params.get(RequestConstants.TYPE));
-					List<Session> availableSessions = findAvailableSessions(center, params.get(RequestConstants.AGE_LIMIT), vaccine);
+					Integer dose = StringHelper.convertStringInteger((String)params.get(RequestConstants.DOSE));
+					List<Session> availableSessions = findAvailableSessions(center, params.get(RequestConstants.AGE_LIMIT), vaccine, dose);
 					if(availableSessions != null && !availableSessions.isEmpty()) {
 						resultCenter.setSessions(availableSessions);
 						availableCenters.add(resultCenter);
@@ -100,9 +106,9 @@ public class SlotService {
 		return availableCenters;
 	}
 	
-	public List<Session> findAvailableSessions(Center center, String ageLimit, VaccineType type){
+	public List<Session> findAvailableSessions(Center center, String ageLimit, VaccineType type, Integer dose){
 		return center.getSessions().stream()
-				.filter(SlotFilterPredicates.findSessionByAvailableCapacity())
+				.filter(SlotFilterPredicates.findSessionByAvailableCapacity(dose))
 				.filter(SlotFilterPredicates.findSessionByAgeLimit(ageLimit != null ? Integer.parseInt(ageLimit):null))
 				.filter(SlotFilterPredicates.findSessionByVaccineType(type))
 				.collect(Collectors.toList());
