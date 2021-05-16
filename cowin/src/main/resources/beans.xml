@@ -21,7 +21,6 @@
 		<entry key="date" value="17-05-2021"></entry>
 		<entry key="fee_type" value="free"></entry>
 		<entry key="age_limit" value="18"></entry>
-		<entry key="dose" value="1"></entry>
 	</util:map>
 	
 	<bean name="available18Free24" class="com.tracker.cowin.batch.dataobjects.JobConfiguration">

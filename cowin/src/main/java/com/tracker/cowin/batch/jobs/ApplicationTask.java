@@ -1,5 +1,6 @@
 package com.tracker.cowin.batch.jobs;
 
+import java.util.Calendar;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
@@ -32,7 +33,7 @@ public class ApplicationTask implements Runnable{
 					for(Center center: centerList) {
 						AsciiTable at = new AsciiTable();
 						at.addRule();
-						at.addRow(null,"General Information (SLOTS)");
+						at.addRow(null,"General Information (SLOTS) " + Calendar.getInstance().getTime());
 						at.addRule();
 						at.addRow("Name","Address");
 						at.addRule();
@@ -53,13 +54,14 @@ public class ApplicationTask implements Runnable{
 						System.out.println(at.render(50));
 					}
 					this.jabTrackerLauncher.play();
-				} else {
-					AsciiTable at = new AsciiTable();
-					at.addRule();
-					at.addRow(null,"No SLOTS found !!");
-					at.addRule();
-					System.out.println(at.render(50));
-				}
+				} 
+			} else {
+				AsciiTable at = new AsciiTable();
+				at.addRule();
+				at.addRow("No SLOTS found "+Calendar.getInstance().getTime());
+				at.addRule();
+				System.out.println(at.render(50));
+				
 			}
 		} catch (InterruptedException | ExecutionException e) {
 			CommonConstants.LOGGER.error(e.getMessage());
